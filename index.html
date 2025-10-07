@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>V K Unisex Salon – Chalisgaon Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: backgroundShift 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundShift {
+            0% { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+            100% { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        }
+
+        .form-box { 
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            max-width: 500px;
+            width: 100%;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.8s ease-out forwards;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+            font-weight: 600;
+            text-align: center;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 5px rgba(102, 126, 234, 0.3); }
+            100% { text-shadow: 0 0 20px rgba(102, 126, 234, 0.6); }
+        }
+
+        h3 {
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        .address {
+            background: linear-gradient(45deg, #f8f9ff, #e8ecff);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+            animation: addressPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes addressPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .address strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .form-container {
+            position: relative;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+            animation: inputSlide 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .input-group:nth-child(1) { animation-delay: 0.1s; }
+        .input-group:nth-child(2) { animation-delay: 0.2s; }
+        .input-group:nth-child(3) { animation-delay: 0.3s; }
+        .input-group:nth-child(4) { animation-delay: 0.4s; }
+        .input-group:nth-child(5) { animation-delay: 0.5s; }
+        .input-group:nth-child(6) { animation-delay: 0.6s; }
+        .input-group:nth-child(7) { animation-delay: 0.7s; }
+
+        @keyframes inputSlide {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        input, select, textarea { 
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            background: white;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+            background: #f8f9ff;
+        }
+
+        input:hover, select:hover, textarea:hover {
+            border-color: #9bb5ff;
+            transform: translateY(-1px);
+        }
+
+        /* Services Container Styling */
+        .services-container {
+            width: 100%;
+        }
+
+        .services-title {
+            color: #333;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            animation: titleShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes titleShimmer {
+            0%, 100% { color: #333; }
+            50% { color: #667eea; }
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .service-card {
+            position: relative;
+            cursor: pointer;
+            animation: cardFloat 4s ease-in-out infinite;
+        }
+
+        .service-card:nth-child(even) {
+            animation-delay: 2s;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .service-card input[type="checkbox"] {
+            display: none;
+        }
+
+        .service-card label {
+            display: block;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+            border: 2px solid #e1e5e9;
+            border-radius: 15px;
+            padding: 20px 10px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-card label:hover {
+            transform: translateY(-8px) scale(1.05);
+            border-color: #667eea;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+            background: linear-gradient(135deg, #fff 0%, #f0f4ff 100%);
+        }
+
+        .service-card input[type="checkbox"]:checked + label {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: #667eea;
+            color: white;
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+            animation: selectedPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes selectedPulse {
+            0%, 100% { box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4); }
+            50% { box-shadow: 0 25px 50px rgba(102, 126, 234, 0.6); }
+        }
+
+        .service-icon-large {
+            font-size: 28px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            animation: iconBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .service-card:hover .service-icon-large {
+            transform: scale(1.2) rotate(10deg);
+            animation-play-state: paused;
+        }
+
+        .service-card input[type="checkbox"]:checked + label .service-icon-large {
+            transform: scale(1.3);
+            filter: brightness(1.2);
+            animation: selectedIconSpin 1s ease-in-out;
+        }
+
+        @keyframes selectedIconSpin {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.4) rotate(180deg); }
+            100% { transform: scale(1.3) rotate(360deg); }
+        }
+
+        .service-name {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card input[type="checkbox"]:checked + label .service-name {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .service-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 15px;
+            opacity: 0;
+            background: radial-gradient(circle at center, rgba(102, 126, 234, 0.3) 0%, transparent 70%);
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .service-card:hover .service-glow {
+            opacity: 1;
+            animation: glowPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.05); opacity: 0.6; }
+        }
+
+        .service-card input[type="checkbox"]:checked + label .service-glow {
+            opacity: 0.8;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .submit-container {
+            margin-top: 30px;
+            animation: submitAppear 0.8s ease-out 0.8s forwards;
+            opacity: 0;
+        }
+
+        @keyframes submitAppear {
+            to { opacity: 1; }
+        }
+
+        input[type=submit] { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 18px 40px;
+            border-radius: 50px;
+            width: 100%;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        input[type=submit]:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        input[type=submit]:hover:before {
+            left: 100%;
+        }
+
+        input[type=submit]:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #7b8cff 0%, #8a5cb8 100%);
+        }
+
+        input[type=submit]:active {
+            transform: translateY(-1px);
+        }
+
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .floating-icon:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .floating-icon:nth-child(3) { left: 80%; animation-delay: 2s; }
+        .floating-icon:nth-child(4) { left: 70%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .service-icon {
+            display: inline-block;
+            margin-right: 8px;
+            font-size: 18px;
+            animation: iconSpin 2s linear infinite;
+        }
+
+        @keyframes iconSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .form-box {
+                margin: 10px;
+                padding: 30px 20px;
+            }
+            
+            h2 {
+                font-size: 1.8em;
+            }
+            
+            input, select, textarea {
+                padding: 12px 15px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .service-card label {
+                padding: 15px 8px;
+                height: 85px;
+            }
+
+            .service-icon-large {
+                font-size: 24px;
+                margin-bottom: 6px;
+            }
+
+            .service-name {
+                font-size: 11px;
+            }
+        }
+
+        /* Loading animation for form submission */
+        .form-box.loading {
+            pointer-events: none;
+        }
+
+        .form-box.loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-icons">
+        <div class="floating-icon">✂️</div>
+        <div class="floating-icon">💇</div>
+        <div class="floating-icon">💄</div>
+        <div class="floating-icon">✨</div>
+    </div>
+
+    <div class="form-box">
+        <h2><span class="service-icon">💇</span>Book Your Appointment</h2>
+        <h3>V K Unisex Salon – Chalisgaon</h3>
+        
+        <div class="address">
+            <strong>📍 Address:</strong>
+            92, Hans Theater Rd, Suvarnatai Nagar, Ganesh Nagar,<br>
+            Chalisgaon, Maharashtra 424101
+        </div>
+
+        <form action="booking-summary.php" method="POST" class="form-container">
+            <div class="input-group">
+                <input type="text" name="customer_name" placeholder="Your Name" required>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" name="contact_number" placeholder="Contact Number" required>
+            </div>
+            
+            <div class="input-group">
+                <div class="services-container">
+                    <h4 class="services-title">Choose Services</h4>
+                    <div class="services-grid">
+                        <div class="service-card" data-service="Haircut">
+                            <input type="checkbox" name="service_type[]" value="Haircut" id="haircut">
+                            <label for="haircut">
+                                <div class="service-icon-large">✂️</div>
+                                <span class="service-name">Haircut</span>
+                                <div class="service-glow"></div>
+                            </label>
+                        </div>
+                        
+                        <div class="service-card" data-service="Hair Spa">
+                            <input type="checkbox" name="service_type[]" value="Hair Spa" id="hairspa">
+                            <label for="hairspa">
+                                <div class="service-icon-large">🧴</div>
+                                <span class="service-name">Hair Spa</span>
+                                <div class="service-glow"></div>
+                            </label>
+                        </div>
+                        
+                        <div class="service-card" data-service="Facial">
+                            <input type="checkbox" name="service_type[]" value="Facial" id="facial">
+                            <label for="facial">
+                                <div class="service-icon-large">✨</div>
+                                <span class="service-name">Facial</span>
+                                <div class="service-glow"></div>
+                            </label>
+                        </div>
+                        
+                        <div class="service-card" data-service="Beard Styling">
+                            <input type="checkbox" name="service_type[]" value="Beard Styling" id="beard">
+                            <label for="beard">
+                                <div class="service-icon-large">🧔</div>
+                                <span class="service-name">Beard Styling</span>
+                                <div class="service-glow"></div>
+                            </label>
+                        </div>
+                        
+                        <div class="service-card" data-service="Hair Color">
+                            <input type="checkbox" name="service_type[]" value="Hair Color" id="haircolor">
+                            <label for="haircolor">
+                                <div class="service-icon-large">🎨</div>
+                                <span class="service-name">Hair Color</span>
+                                <div class="service-glow"></div>
+                            </label>
+                        </div>
+                        
+                        <div class="service-card" data-service="Bridal Makeup">
+                            <input type="checkbox" name="service_type[]" value="Bridal Makeup" id="bridal">
+                            <label for="bridal">
+                                <div class="service-icon-large">👰</div>
+                                <span class="service-name">Bridal Makeup</span>
+                                <div class="service-glow"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <input type="date" name="appointment_date" required>
+            </div>
+            
+            <div class="input-group">
+                <input type="time" name="appointment_time" required>
+            </div>
+            
+            <div class="input-group">
+                <textarea name="notes" placeholder="Any special requests? (optional)"></textarea>
+            </div>
+            
+            <div class="submit-container">
+                <input type="submit" value="Book Now">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Add smooth form submission animation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const selectedServices = document.querySelectorAll('input[name="service_type[]"]:checked');
+            if (selectedServices.length === 0) {
+                e.preventDefault();
+                alert('Please select at least one service!');
+                return;
+            }
+            document.querySelector('.form-box').classList.add('loading');
+        });
+
+        // Add typing effect for placeholders
+        const inputs = document.querySelectorAll('input[placeholder], textarea[placeholder]');
+        inputs.forEach(input => {
+            const originalPlaceholder = input.placeholder;
+            input.addEventListener('focus', function() {
+                this.placeholder = '';
+            });
+            input.addEventListener('blur', function() {
+                if (this.value === '') {
+                    this.placeholder = originalPlaceholder;
+                }
+            });
+        });
+
+        // Add date validation to prevent past dates
+        const dateInput = document.querySelector('input[type="date"]');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+
+        // Add service selection animation and sound effect
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            const checkbox = card.querySelector('input[type="checkbox"]');
+            const label = card.querySelector('label');
+            
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    // Add selection animation
+                    label.style.animationPlayState = 'running';
+                    // Create ripple effect
+                    createRipple(card, event);
+                }
+            });
+        });
+
+        // Create ripple effect function
+        function createRipple(element, event) {
+            const ripple = document.createElement('div');
+            const rect = element.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                pointer-events: none;
+            `;
+            
+            element.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
