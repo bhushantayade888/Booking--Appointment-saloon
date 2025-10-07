@@ -1,13 +1,14 @@
 <?php
-$host = 'localhost';
-$user = 'root';
-$password = 'bhushu'; // update if your DB has a password
-$database = 'vk_salon';
+$servername = "localhost";   // or your RDS endpoint if using AWS
+$username = "root";          // change if needed
+$password = "bhushu";        // your MySQL password
+$dbname = "vk_salon";        // name of the DB you created
 
-$conn = new mysqli($host, $user, $password, $database);
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Database connection failed: " . $conn->connect_error);
 }
 ?>
-[ec2-user@ip-172-31-32-192 vk-salon-chalisgaon]$ 
